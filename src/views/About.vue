@@ -30,13 +30,19 @@
     </div>
   </div>
 
+  <AddFilm />
+
 </template>
 
 <script>
-import getFilms from "../composables/getFilms";
+import getFilms from "../composables/getFilms"
+import AddFilm from "./AddFilm"
 
 export default {
   name: "About",
+  components: {
+    AddFilm
+  },
   setup() {
     const { films, error, load } = getFilms();
     load();
