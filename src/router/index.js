@@ -3,6 +3,16 @@ import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 import LoginForm from "../components/LoginForm.vue";
 import SignUpForm from "../components/SignUpForm.vue";
+import { projectAuth } from '../firebase/config'
+
+const requireAuth = (to, from, next) => {
+  let user = projectAuth.currentUser
+  if (!user) {
+    next(  { name: 'welcome'} )
+  } else {
+    next()
+  }
+}
 
 const routes = [
   {
