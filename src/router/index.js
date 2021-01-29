@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
-import LoginForm from "../components/LoginForm.vue";
-import SignUpForm from "../components/SignUpForm.vue";
+import LoginForm from "../views/auth/LoginForm.vue";
+import SignUpForm from "../views/auth/SignUpForm.vue";
 import { projectAuth } from '../firebase/config'
 
 const requireAuth = (to, from, next) => {

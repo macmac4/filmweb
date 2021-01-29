@@ -1,5 +1,15 @@
 <template>
-  <form @submit.prevent="handleSubmit" class="form-login">
+  <form @submit.prevent="handleSubmit" class="form-signup">
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        id="floatingName"
+        placeholder="display name"
+        v-model="displayName"
+      />
+      <label for="floatingName">Display name</label>
+    </div>
     <div class="form-floating mb-3">
       <input
         type="email"
@@ -20,34 +30,39 @@
       />
       <label for="floatingPassword">Password</label>
     </div>
-    <button type="submit" class="btn btn-primary">Log in</button>
+    <button v-if="!isPending" type="submit" class="btn btn-primary">Sign up</button>
+    <button v-if="isPending" type="submit" class="btn btn-primary" disabled>Loading</button>
     <div class="alert alert-danger mt-3" role="alert" v-if="error !== null"> {{ error }} </div>
   </form>
 </template>
 
 <script>
 import { ref } from 'vue'
-import useLogin from '../composables/useLogin'
+import useSignup from '@/composables/useSignup'
 
 export default {
-  name: "LoginForm",
+  name: "SignUpForm",
   setup() {
+    const displayName = ref('')
     const email = ref('')
     const password = ref('')
-    const { error, login } = useLogin()
+
+    const { error, signup, isPending } = useSignup()
 
     const handleSubmit = async () => {
-      await login(email.value, password.value)
-      if (!error.value) {
-        console.log('login')
+      await signup(displayName.value, email.value, password.value)
+      if(!error.value) {
+        console.log('ok')
       }
     }
 
     return {
       error: error,
+      displayName: displayName,
       email: email,
       password: password,
       handleSubmit: handleSubmit,
+      isPending: isPending,
     }
   }
 };
