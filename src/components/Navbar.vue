@@ -30,7 +30,7 @@ export default {
     const handleSubmit = async () => {
       await logout()
       if (!error.value) {
-        router.push({ name: 'LoginForm'})
+        router.push({ name: 'Login'})
         console.log('logout')
       }
     }
