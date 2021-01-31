@@ -13,7 +13,7 @@
           <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-right">
             <div class="card">
               <div class="card-img">
-                <img src="assets/img/services-1.jpg" alt="...">
+                <img src="@/assets/images/services-2.jpg" alt="...">
               </div>
               <div class="card-body">
                 <h5 class="card-title"><a href="">Temporibus laudantium</a></h5>
@@ -25,7 +25,7 @@
           <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-left">
             <div class="card">
               <div class="card-img">
-                <img src="assets/img/services-2.jpg" alt="...">
+                <img src="@/assets/images/services-2.jpg" alt="...">
               </div>
               <div class="card-body">
                 <h5 class="card-title"><a href="">Aperiores voluptates</a></h5>
@@ -38,7 +38,7 @@
           <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-right">
             <div class="card">
               <div class="card-img">
-                <img src="assets/img/services-3.jpg" alt="...">
+                <img src="@/assets/images/services-2.jpg" alt="...">
               </div>
               <div class="card-body">
                 <h5 class="card-title"><a href="">Veritatis natus nisi</a></h5>
@@ -50,7 +50,7 @@
           <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-left">
             <div class="card">
               <div class="card-img">
-                <img src="assets/img/services-4.jpg" alt="...">
+                <img src="@/assets/images/services-2.jpg" alt="...">
               </div>
               <div class="card-body">
                 <h5 class="card-title"><a href="">Aliquam veritatis</a></h5>

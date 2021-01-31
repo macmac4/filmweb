@@ -4,19 +4,17 @@
     <div class="container d-flex align-items-center justify-content-between">
 
       <div class="logo">
-        <h1 class="text-light"><a href="index.html">FilmWeb<span>.</span></a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+        <h1 class="text-light"><router-link to="/">FilmWeb<span>.</span></router-link></h1>
       </div>
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li class="active"><router-link to="/">Home</router-link></li>
-          <li><router-link to="/about">About</router-link></li>
-          <li><a href="#services">Services</a></li>
+          <li><router-link to="/films">List Films</router-link></li>
+          <!-- <li><a href="#services">Services</a></li>
           <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#team">Team</a></li>
-          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#team">Team</a></li> -->
+          <li><router-link to="/contact">Contact Us</router-link></li>
 
           <template v-if="user">
             <li class="get-started">
