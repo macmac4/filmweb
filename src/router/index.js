@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
-import About from "../views/About.vue";
+import Collection from "../views/Collection.vue";
 import LoginForm from "../views/auth/LoginForm.vue";
 import SignUpForm from "../views/auth/SignUpForm.vue";
 import { projectAuth } from '../firebase/config'
@@ -21,9 +21,9 @@ const routes = [
     component: Home
   },
   {
-    path: "/about",
-    name: "About",
-    component: About
+    path: "/films",
+    name: "films",
+    component: Collection
   },
   {
     path: "/login",
