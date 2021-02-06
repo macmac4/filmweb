@@ -13,16 +13,18 @@ const useStorage = () => {
     filePath.value = `covers/${user.value.uid}/${file.name}`
     const storageRef = projectStorage.ref(filePath.value)
 
+    console.log(storageRef)
+
     try {
       const res = await storageRef.put(file)
-      url.value = res.ref.getDownloadURL
+      url.value = await res.ref.getDownloadURL()
 
     } catch(err) {
       error.value = err.message
     }
   }
 
-  return { url, filePath, error, uploadImage }
+  return { uploadImage, url, filePath, error }
 }
 
 export default useStorage

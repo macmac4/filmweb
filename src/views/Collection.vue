@@ -6,7 +6,7 @@
 
   <div class="about">
     <h1>This is an about page</h1>
-    <div v-for="film in films" :key="film.id">
+    <div v-for="film in collection" :key="film.id">
       {{ film.title }} - {{ film.description }}
     </div>
   </div>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import getFilms from "../composables/getFilms"
+import getCollection from "../composables/getCollection"
 import ListFilm from "../components/ListFilm"
 import MetricFilm from "../components/MetricFilm"
 import AddFilm from "./AddFilm"
@@ -29,11 +29,11 @@ export default {
     ListFilm
   },
   setup() {
-    const { films, error, load } = getFilms();
+    const { collection, error, load } = getCollection();
     load();
 
     return {
-      films: films,
+      collection: collection,
       error: error,
     };
   },

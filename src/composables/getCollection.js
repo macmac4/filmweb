@@ -1,8 +1,8 @@
 import { ref } from "vue";
 import { projectFirestore } from "../firebase/config";
 
-const getFilms = () => {
-  const films = ref([]);
+const getCollection = () => {
+  const collection = ref([]);
   const error = ref(null);
 
   const load = async () => {
@@ -10,7 +10,7 @@ const getFilms = () => {
       const res = await projectFirestore.collection("films").get();
       // console.log(res.docs)
 
-      films.value = res.docs.map((film) => {
+      collection.value = res.docs.map((film) => {
         return { ...film.data(), id: film.id };
       });
     } catch (err) {
@@ -19,7 +19,7 @@ const getFilms = () => {
     }
   };
 
-  return { films, error, load };
+  return { collection, error, load };
 };
 
-export default getFilms;
+export default getCollection;

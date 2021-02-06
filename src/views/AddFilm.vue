@@ -21,12 +21,12 @@
 
 <script>
 import { ref } from 'vue'
-import useFilm from '../composables/useFilm.js'
+import useCollection from '../composables/useCollection'
 
 export default {
   name: 'AddFilm',
   setup() {
-    const { error, addFilm } = useFilm('films')
+    const { error, addDoc } = useCollection('films')
     const title = ref('')
     const description = ref('')
 
@@ -36,7 +36,7 @@ export default {
         description: description.value
       }
 
-      await addFilm(film)
+      await addDoc(film)
     }
 
     return {

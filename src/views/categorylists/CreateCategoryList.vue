@@ -45,14 +45,14 @@
 <script>
   import { ref } from 'vue'
   import useStorage from '@/composables/useStorage'
-  import useFilm from '@/composables/useFilm'
+  import useCollection from '@/composables/useCollection'
   import getUser from '@/composables/getUser'
   import { timestamp } from '@/firebase/config'
 
   export default {
     setup() {
-      const { url, filePath, uploadImage } = useStorage()
-      const { error, addFilm } = useFilm('categorylist')
+      const { uploadImage, url, filePath } = useStorage()
+      const { error, addDoc } = useCollection('categorylist')
       const { user } = getUser()
 
       const categoryTitle = ref('')
@@ -62,8 +62,8 @@
       const handleSubmit = async () => {
         if (file.value) {
           await uploadImage(file.value)
-          await addFilm({
-            title: categoryTitle,
+          await addDoc({
+            title: categoryTitle.value,
             userId: user.value.uid,
             userName: user.value.displayName,
             coverUrl: url.value,
@@ -73,7 +73,7 @@
           })
 
           if (!error.value) {
-            console.log('add film')
+            console.log('add category')
           }
         }
       }

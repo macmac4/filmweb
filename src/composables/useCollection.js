@@ -1,16 +1,18 @@
 import { ref } from 'vue'
 import { projectFirestore } from "../firebase/config"
 
-const useFilm = (collection) => {
+const useCollection = (collection) => {
   const error = ref(null)
   const isPending = ref(false)
 
-  const addFilm = async (dataFilm) => {
+  const addDoc = async (doc) => {
     error.value = null
     isPending.value = true
 
+    console.log(doc)
+
     try {
-      const res = await projectFirestore.collection(collection).add(dataFilm);
+      const res = await projectFirestore.collection(collection).add(doc);
       isPending.value = false
 
       console.log(res)
@@ -24,7 +26,7 @@ const useFilm = (collection) => {
     }
   };
 
-  return { error, addFilm, isPending };
+  return { error, addDoc, isPending };
 };
 
-export default useFilm
+export default useCollection
