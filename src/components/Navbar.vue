@@ -10,15 +10,20 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li class="active"><router-link to="/">Home</router-link></li>
-          <li><router-link to="/films">List Films</router-link></li>
-          <!-- <li><a href="#services">Services</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#team">Team</a></li> -->
+          <li><router-link to="/film/list">List Films</router-link></li>
+          <!-- <li><router-link to="/category/list">Categories</router-link></li> -->
           <li><router-link to="/contact">Contact Us</router-link></li>
 
           <template v-if="user">
+            <li class="drop-down"><a href="">Main Panel</a>
+              <ul>
+                <li>
+                  <router-link to="/category/create">Create Category</router-link>
+                </li>
+              </ul>
+            </li>
             <li class="get-started">
-              <a @click="handleSubmit">Log out</a>
+              <a @click="handleSubmit">Log out {{ user.displayName }}</a>
             </li>
           </template>
           <template v-else>

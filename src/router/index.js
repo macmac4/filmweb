@@ -1,16 +1,18 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Contact from "../views/Contact.vue";
-import Collection from "../views/Collection.vue";
 import LoginForm from "../views/auth/LoginForm.vue";
 import SignUpForm from "../views/auth/SignUpForm.vue";
 import CreateCategoryList from "../views/categorylists/CreateCategoryList.vue";
-import { projectAuth } from '../firebase/config'
+import ShowCategoryList from "../views/categorylists/ShowCategoryList.vue";
+import CreateFilm from "../views/films/CreateFilm.vue";
+import ShowFilms from "../views/films/ShowFilms.vue";
+import { projectAuth } from '../firebase/config';
 
 const requireAuth = (to, from, next) => {
   let user = projectAuth.currentUser
   if (!user) {
-    next(  { name: 'welcome'} )
+    next(  { name: 'Login'} )
   } else {
     next()
   }
@@ -28,11 +30,6 @@ const routes = [
     component: Contact
   },
   {
-    path: "/films",
-    name: "Films",
-    component: Collection
-  },
-  {
     path: "/login",
     name: "Login",
     component: LoginForm
@@ -47,6 +44,16 @@ const routes = [
     name: "CategoryCreate",
     component: CreateCategoryList
   },
+  {
+    path: "/film/create",
+    name: "FilmCreate",
+    component: CreateFilm
+  },
+  {
+    path: "/film/list",
+    name: "FilmList",
+    component: ShowFilms
+  }
 ];
 
 const router = createRouter({

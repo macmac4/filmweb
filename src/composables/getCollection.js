@@ -1,25 +1,33 @@
-import { ref } from "vue";
-import { projectFirestore } from "../firebase/config";
+import { ref, watchEffect } from 'vue'
+import { projectFirestore } from '../firebase/config'
 
-const getCollection = () => {
-  const collection = ref([]);
-  const error = ref(null);
+const getCollection = (collection) => {
 
-  const load = async () => {
-    try {
-      const res = await projectFirestore.collection("films").get();
-      // console.log(res.docs)
+  const documents = ref(null)
+  const error = ref(null)
 
-      collection.value = res.docs.map((film) => {
-        return { ...film.data(), id: film.id };
-      });
-    } catch (err) {
-      error.value = err.message;
-      console.log(error.value);
-    }
-  };
+  let collectionRef = projectFirestore.collection(collection).orderBy('createdAt')
 
-  return { collection, error, load };
-};
+  const unsub = collectionRef.onSnapshot(snap => {
+    let results = []
+    snap.docs.forEach(doc => {
+      doc.data().createdAt && results.push({...doc.data(), id: doc.id})
+    });
+    
+    documents.value = results
+    error.value = null
 
-export default getCollection;
+  }, err => {
+    console.log(err.message)
+    documents.value = null
+    error.value = 'problem with data'
+  })
+
+  watchEffect((onInvalidate) => {
+    onInvalidate(() => unsub());
+  });
+
+  return { error, documents }
+}
+
+export default getCollection
