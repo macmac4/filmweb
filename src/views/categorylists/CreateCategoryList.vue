@@ -32,7 +32,8 @@
               <div class="alert alert-danger mt-3" role="alert" v-if="fileError !== null"> {{ fileError }} </div>
             </div>
             <div class="text-center">
-              <button type="submit" class="btn btn-primary">Create</button>
+              <button v-if="!isPending" type="submit" class="btn btn-primary">Create</button>
+              <button v-else type="submit" class="btn btn-primary" disabled>Saving...</button>
             </div>
           </form>
         </div>
@@ -58,9 +59,11 @@
       const categoryTitle = ref('')
       const file = ref(null)
       const fileError = ref(null)
+      const isPending = ref(false)
 
       const handleSubmit = async () => {
         if (file.value) {
+          isPending.value = true
           await uploadImage(file.value)
           await addDoc({
             title: categoryTitle.value,
@@ -71,6 +74,7 @@
             film: [],
             createdAt: timestamp(),
           })
+          isPending.value = false
 
           if (!error.value) {
             console.log('add category')
@@ -98,6 +102,7 @@
         handleSubmit,
         handleChange,
         fileError,
+        isPending,
       }
     }
   }
