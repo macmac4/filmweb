@@ -22,31 +22,15 @@
               />
             </div>
             <div class="form-group mt-3">
-              <textarea
-                class="form-control"
-                placeholder="category description"
-                v-model="categoryDescription"
-                required
-              ></textarea>
-            </div>
-            <div class="form-group mt-3">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Link to film"
-                v-model="categoryLink"
-                required
-              />
-            </div>
-            <div class="form-group mt-3">
               <input
                 type="file"
                 class="form-control"
+                @change="handleChange"
               />
             </div>
-            <!-- <div class="mb-3">
-              <div class="alert alert-danger mt-3" role="alert" v-if="error !== null"> {{ error }} </div>
-            </div> -->
+            <div class="mb-3">
+              <div class="alert alert-danger mt-3" role="alert" v-if="fileError !== null"> {{ fileError }} </div>
+            </div>
             <div class="text-center">
               <button type="submit" class="btn btn-primary">Create</button>
             </div>
@@ -60,22 +44,60 @@
   
 <script>
   import { ref } from 'vue'
+  import useStorage from '@/composables/useStorage'
+  import useFilm from '@/composables/useFilm'
+  import getUser from '@/composables/getUser'
+  import { timestamp } from '@/firebase/config'
 
   export default {
     setup() {
+      const { url, filePath, uploadImage } = useStorage()
+      const { error, addFilm } = useFilm('categorylist')
+      const { user } = getUser()
+
       const categoryTitle = ref('')
-      const categoryDescription = ref('')
-      const categoryLink = ref('')
+      const file = ref(null)
+      const fileError = ref(null)
 
-      const handleSubmit = () => {
+      const handleSubmit = async () => {
+        if (file.value) {
+          await uploadImage(file.value)
+          await addFilm({
+            title: categoryTitle,
+            userId: user.value.uid,
+            userName: user.value.displayName,
+            coverUrl: url.value,
+            filePath: filePath.value,
+            film: [],
+            createdAt: timestamp(),
+          })
 
+          if (!error.value) {
+            console.log('add film')
+          }
+        }
+      }
+
+      const types = ['image/png', 'image/jpeg', 'image/jpg']
+
+      const handleChange = (e) => {
+        console.log(e.target.files)
+        const selected = e.target.files[0]
+
+        if (selected && types.includes(selected.type)) {
+          file.value = selected
+          fileError.value = null
+        } else {
+          file.value = null
+          fileError.value = 'Wrond type of file. Please type (png or jpeg)'
+        }
       }
 
       return {
         categoryTitle,
-        categoryDescription,
-        categoryLink,
         handleSubmit,
+        handleChange,
+        fileError,
       }
     }
   }
