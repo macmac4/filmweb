@@ -20,7 +20,7 @@ Website with which you can add videos. Create your own lists. Search for your fa
 * [VueJS](https://vuejs.org/) - HTML enhanced for web apps! (version 3)
 * [WebPack](https://webpack.js.org/) - the streaming build system (version 5)
 * [Bootstrap](https://getbootstrap.com/) - styling template (version 5)
-* [Bootstrap](https://icons.getbootstrap.com/) - Icon for view template 
+* [Bootstrap-Icon](https://icons.getbootstrap.com/) - Icon for view template 
 * [FireBase](https://firebase.google.com) - backend & api functionaly (version 8)
 
 ## Setup

@@ -4,6 +4,7 @@ import Contact from "../views/Contact.vue";
 import Collection from "../views/Collection.vue";
 import LoginForm from "../views/auth/LoginForm.vue";
 import SignUpForm from "../views/auth/SignUpForm.vue";
+import CreateCategoryList from "../views/categorylists/CreateCategoryList.vue";
 import { projectAuth } from '../firebase/config'
 
 const requireAuth = (to, from, next) => {
@@ -28,7 +29,7 @@ const routes = [
   },
   {
     path: "/films",
-    name: "films",
+    name: "Films",
     component: Collection
   },
   {
@@ -40,7 +41,12 @@ const routes = [
     path: "/signup",
     name: "Signup",
     component: SignUpForm
-  }
+  },
+  {
+    path: "/category/create",
+    name: "CategoryCreate",
+    component: CreateCategoryList
+  },
 ];
 
 const router = createRouter({
