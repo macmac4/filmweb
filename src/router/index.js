@@ -7,6 +7,7 @@ import CreateCategoryList from "../views/categorylists/CreateCategoryList.vue";
 import ShowCategoryList from "../views/categorylists/ShowCategoryList.vue";
 import CreateFilm from "../views/films/CreateFilm.vue";
 import ShowFilms from "../views/films/ShowFilms.vue";
+import MetricFilm from "../views/films/MetricFilm.vue";
 import { projectAuth } from '../firebase/config';
 
 const requireAuth = (to, from, next) => {
@@ -42,17 +43,25 @@ const routes = [
   {
     path: "/category/create",
     name: "CategoryCreate",
-    component: CreateCategoryList
+    component: CreateCategoryList,
+    beforeEnter: requireAuth,
   },
   {
     path: "/film/create",
     name: "FilmCreate",
-    component: CreateFilm
+    component: CreateFilm,
+    beforeEnter: requireAuth,
   },
   {
     path: "/film/list",
     name: "FilmList",
     component: ShowFilms
+  },
+  {
+    path: "/film/:id",
+    name: "FilmMetric",
+    component: MetricFilm,
+    props: true,
   }
 ];
 

@@ -9,7 +9,7 @@
 
       <div class="row justify-content-center">
 
-        <div class="col-lg-6 mt-4 mt-lg-0">
+        <div class="col-lg-6 mt-4 mt-lg-0" v-if="statusSubmit == false">
           <form @submit.prevent="handleSubmit">
             <div class="form-group mt-3">
               <input
@@ -71,6 +71,13 @@
             </div>
           </form>
         </div>
+        <div class="col-lg-6 mt-4 mt-lg-0" v-else>
+          <div class="mb-3">
+              <div class="alert alert-success mt-3" role="alert"> Correctly created film </div>
+          </div>
+        </div>
+
+
       </div>
     </div>
   </section>
@@ -101,10 +108,13 @@
       const file = ref(null)
       const fileError = ref(null)
       const isPending = ref(false)
+      const statusSubmit = ref(false)
 
       const handleSubmit = async () => {
         if (file.value) {
           isPending.value = true
+          statusSubmit.value = false
+
           await uploadImage(file.value)
           await addDoc({
             title: filmTitle.value,
@@ -121,6 +131,7 @@
           isPending.value = false
 
           if (!error.value) {
+            statusSubmit.value = true
             console.log('add film')
           }
         }
@@ -147,6 +158,7 @@
         filmLink,
         filmCategory,
         filmFirstPage,
+        statusSubmit,
         documents,
         handleSubmit,
         handleChange,

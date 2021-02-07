@@ -10,7 +10,7 @@
         </div>
 
         <div class="row">
-          <ListFilm v-for="doc in documents" :key="doc.id" />
+          <ListFilm :films="documents" />
         </div>
 
         <!-- <div class="row">
