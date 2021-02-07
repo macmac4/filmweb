@@ -73,7 +73,12 @@
         </div>
         <div class="col-lg-6 mt-4 mt-lg-0" v-else>
           <div class="mb-3">
-              <div class="alert alert-success mt-3" role="alert"> Correctly created film </div>
+              <div class="alert alert-success mt-3" role="alert"> 
+                <p>Correctly created film</p> 
+                <router-link :to="{ name: 'FilmMetric', params: { id: filmID }}">
+                  <i class="icofont-arrow-right"></i> Read More
+                </router-link>
+              </div>
           </div>
         </div>
 
@@ -109,6 +114,7 @@
       const fileError = ref(null)
       const isPending = ref(false)
       const statusSubmit = ref(false)
+      const filmID = ref(null)
 
       const handleSubmit = async () => {
         if (file.value) {
@@ -116,7 +122,7 @@
           statusSubmit.value = false
 
           await uploadImage(file.value)
-          await addDoc({
+          const res = await addDoc({
             title: filmTitle.value,
             description: filmDescription.value,
             link: filmLink.value,
@@ -131,6 +137,7 @@
           isPending.value = false
 
           if (!error.value) {
+            filmID.value = res.id
             statusSubmit.value = true
             console.log('add film')
           }
@@ -164,6 +171,7 @@
         handleChange,
         fileError,
         isPending,
+        filmID,
       }
     }
   }

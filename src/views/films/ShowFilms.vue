@@ -13,20 +13,6 @@
           <ListFilm :films="documents" />
         </div>
 
-        <!-- <div class="row">
-          <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-right" v-for="doc in documents" :key="doc.id">
-            <div class="card">
-              <div class="card-img">
-                <img :src="doc.coverUrl" alt="">
-              </div>
-              <div class="card-body">
-                <h5 class="card-title"><a href="">{{ doc.title }}</a></h5>
-                <div class="read-more"><a href="#"><i class="icofont-arrow-right"></i> Read More</a></div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-
       </div>
     </section><!-- End Services Section -->
 

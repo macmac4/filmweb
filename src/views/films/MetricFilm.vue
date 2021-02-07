@@ -5,19 +5,21 @@
 
     <!-- ======= Portfolio Details Section ======= -->
     <section class="portfolio-details">
-      <div class="container">
+      <div class="alert alert-danger mt-3" role="alert" v-if="error"> {{ error }} </div>
+
+      <div class="container" v-if="document">
 
         <div class="portfolio-details-container">
 
           <div class="owl-carousel portfolio-details-carousel">
-            <img src="@/assets/images/details1.jpg" class="img-fluid" alt="">
+            <img :src="document.coverUrl" class="img-fluid" alt="">
           </div>
 
           <div class="portfolio-info">
             <h3>Project information</h3>
             <ul>
-              <li><strong>Category</strong>: Web design</li>
-              <li><strong>Client</strong>: ASU Company</li>
+              <li><strong>Title</strong>: {{ document.title }}</li>
+              <li><strong>Category</strong>: {{ document.category }}</li>
               <li><strong>Project date</strong>: 01 March, 2020</li>
               <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
             </ul>
@@ -32,12 +34,14 @@
           </p>
         </div>
       </div>
+
     </section><!-- End Portfolio Details Section -->
 
   </main><!-- End #main -->
 </template>
 
 <script>
+import getDocument from "@/composables/getDocument"
 import Breadcrumb from "@/components/Breadcrumb"
 
 export default {
@@ -45,6 +49,12 @@ export default {
   components: {
     Breadcrumb
   },
-  props: [ 'id' ]
+  props: [ 'id' ],
+  setup(props) {
+    const { error, document } = getDocument('filmlist', props.id)
+    console.log(document)
+
+    return { error, document }
+  }
 }
 </script>
