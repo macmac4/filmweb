@@ -7,30 +7,37 @@
     <section class="portfolio-details">
       <div class="alert alert-danger mt-3" role="alert" v-if="error"> {{ error }} </div>
 
-      <div class="container" v-if="document">
+      <div class="container" v-if="film">
 
         <div class="portfolio-details-container">
 
-          <div class="owl-carousel portfolio-details-carousel">
-            <img :src="document.coverUrl" class="img-fluid" alt="">
+          <div class="owl-carousel portfolio-details-carousel row">
+            <div class="col-8">
+              <iframe width="100%" height="460" 
+                src="https://www.youtube.com/embed/s7EdQ4FqbhY">
+              </iframe>
+            </div>
+            <div class="col-4 text-right">
+              <img :src="film.coverUrl" class="img-fluid" alt="">
+            </div>
           </div>
 
           <div class="portfolio-info">
-            <h3>Project information</h3>
+            <h3>Film information</h3>
             <ul>
-              <li><strong>Title</strong>: {{ document.title }}</li>
-              <li><strong>Category</strong>: {{ document.category }}</li>
-              <li><strong>Project date</strong>: 01 March, 2020</li>
-              <li><strong>Project URL</strong>: <a href="#">www.example.com</a></li>
+              <li><strong>Title</strong>: {{ film.title }}</li>
+              <li><strong>Category</strong>: {{ film.category }}</li>
+              <li><strong>Project date</strong>: {{ film.createdAt.toDate() }}</li>
+              <li><strong>Added by</strong>: {{ film.userName }}</li>
             </ul>
           </div>
 
         </div>
 
         <div class="portfolio-description">
-          <h2>This is an example of portfolio detail</h2>
+          <h2>{{ film.title }}</h2>
           <p>
-            Autem ipsum nam porro corporis rerum. Quis eos dolorem eos itaque inventore commodi labore quia quia. Exercitationem repudiandae officiis neque suscipit non officia eaque itaque enim. Voluptatem officia accusantium nesciunt est omnis tempora consectetur dignissimos. Sequi nulla at esse enim cum deserunt eius.
+            {{ film.description }}
           </p>
         </div>
       </div>
@@ -52,9 +59,11 @@ export default {
   props: [ 'id' ],
   setup(props) {
     const { error, document } = getDocument('filmlist', props.id)
-    console.log(document)
 
-    return { error, document }
+    return { 
+      error, 
+      film: document 
+    }
   }
 }
 </script>

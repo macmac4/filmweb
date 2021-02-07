@@ -1,6 +1,5 @@
 <template>
   <main id="main">
-    <!-- ======= Services Section ======= -->
     <section id="services" class="services section-bg" v-if="documents">
       <div class="container">
 
@@ -14,7 +13,7 @@
         </div>
 
       </div>
-    </section><!-- End Services Section -->
+    </section>
 
     <div class="alert alert-danger mt-3" role="alert" v-if="error !== null"> {{ error }} </div>
   </main>
@@ -30,12 +29,7 @@ export default {
     ListFilm
   },
   setup() {
-    const { documents, error } = getCollection(
-      'filmlist',
-      ['firstpage', '==', true]
-    );
-
-    console.log(documents)
+    const { documents, error } = getCollection('filmlist');
 
     return {
       documents: documents,

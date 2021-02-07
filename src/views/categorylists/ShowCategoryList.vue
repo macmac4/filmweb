@@ -39,8 +39,6 @@ export default {
   setup() {
     const { documents, error } = getCollection('categorylist');
 
-    console.log(documents);
-
     return {
       documents: documents,
       error: error,

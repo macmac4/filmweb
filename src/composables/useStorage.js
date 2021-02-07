@@ -13,8 +13,6 @@ const useStorage = () => {
     filePath.value = `covers/${user.value.uid}/${file.name}`
     const storageRef = projectStorage.ref(filePath.value)
 
-    console.log(storageRef)
-
     try {
       const res = await storageRef.put(file)
       url.value = await res.ref.getDownloadURL()

@@ -6,11 +6,13 @@
         <img :src="film.coverUrl" alt="">
       </div>
       <div class="card-body">
-        <h5 class="card-title"><a href="">{{ film.title }}</a></h5>
+        <h5 class="card-title">
+          <router-link :to="{ name: 'FilmMetric', params: { id: film.id }}">{{ film.title }}</router-link>
+        </h5>
         <p class="card-text">{{ film.description }}</p>
         <div class="read-more">
           <router-link :to="{ name: 'FilmMetric', params: { id: film.id }}">
-            <i class="icofont-arrow-right"></i> Read More
+            <i class="icofont-arrow-right"></i> Show More
           </router-link>
         </div>
       </div>

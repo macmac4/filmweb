@@ -12,7 +12,6 @@ const login = async (email, password) => {
     const res = await projectAuth.signInWithEmailAndPassword(email, password)
     error.value = null
     isPending.value = false
-    console.log(res)
 
     return res
 

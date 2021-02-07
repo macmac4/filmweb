@@ -102,7 +102,6 @@
       const { error, addDoc } = useCollection('filmlist')
       const { user } = getUser()
       const { documents } = getCollection('categorylist');
-      console.log(documents)
 
 
       const filmTitle = ref('')
@@ -147,7 +146,6 @@
       const types = ['image/png', 'image/jpeg', 'image/jpg']
 
       const handleChange = (e) => {
-        console.log(e.target.files)
         const selected = e.target.files[0]
 
         if (selected && types.includes(selected.type)) {

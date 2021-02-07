@@ -72,7 +72,7 @@ export default {
     const handleSubmit = async () => {
       await signup(displayName.value, email.value, password.value)
       if(!error.value) {
-        console.log('ok')
+        console.log('signup')
       }
     }
 

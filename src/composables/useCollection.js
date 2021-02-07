@@ -9,13 +9,10 @@ const useCollection = (collection) => {
     error.value = null
     isPending.value = true
 
-    console.log(doc)
-
     try {
       const res = await projectFirestore.collection(collection).add(doc);
       isPending.value = false
-
-      console.log(res)
+      
       return res
 
     } catch (err) {
