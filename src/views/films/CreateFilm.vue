@@ -44,13 +44,11 @@
                 v-model="filmCategory"
                 required
               >
-                <option selected>choose category</option>
-                <option value="comedy">comedy</option>
-                <option value="horror">horror</option>
-                <option value="thriller">thriller</option>
-                <option value="romance">romance</option>
+                <option :value="null">choose category</option>
+                <option v-for="doc in documents" :key="doc.id" :value="doc.title">{{ doc.title }}</option>
               </select>
             </div>
+
             <div class="form-group mt-3">
               <input
                 type="file"
@@ -82,6 +80,7 @@
   import { ref } from 'vue'
   import useStorage from '@/composables/useStorage'
   import useCollection from '@/composables/useCollection'
+  import getCollection from "@/composables/getCollection"
   import getUser from '@/composables/getUser'
   import { timestamp } from '@/firebase/config'
 
@@ -90,11 +89,14 @@
       const { uploadImage, url, filePath } = useStorage()
       const { error, addDoc } = useCollection('filmlist')
       const { user } = getUser()
+      const { documents } = getCollection('categorylist');
+      console.log(documents)
+
 
       const filmTitle = ref('')
       const filmDescription = ref('')
       const filmLink = ref('')
-      const filmCategory = ref('')
+      const filmCategory = ref(null)
       const filmFirstPage = ref('')
       const file = ref(null)
       const fileError = ref(null)
@@ -114,13 +116,12 @@
             userName: user.value.displayName,
             coverUrl: url.value,
             filePath: filePath.value,
-            film: [],
             createdAt: timestamp(),
           })
           isPending.value = false
 
           if (!error.value) {
-            console.log('add category')
+            console.log('add film')
           }
         }
       }
@@ -146,6 +147,7 @@
         filmLink,
         filmCategory,
         filmFirstPage,
+        documents,
         handleSubmit,
         handleChange,
         fileError,

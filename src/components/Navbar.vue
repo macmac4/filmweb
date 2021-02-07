@@ -18,6 +18,9 @@
             <li class="drop-down"><a href="">Main Panel</a>
               <ul>
                 <li>
+                  <router-link to="/film/create">Create Film</router-link>
+                </li>
+                <li>
                   <router-link to="/category/create">Create Category</router-link>
                 </li>
               </ul>
