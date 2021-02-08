@@ -6,10 +6,12 @@ const getCollection = (collection, query) => {
   const documents = ref(null)
   const error = ref(null)
 
-  let collectionRef = projectFirestore.collection(collection).orderBy('createdAt')
+  let collectionRef = projectFirestore.collection(collection)
 
   if(query) {
     collectionRef = collectionRef.where(...query)
+  } else {
+    collectionRef = collectionRef.orderBy('createdAt', 'desc')
   }
 
   const unsub = collectionRef.onSnapshot(snap => {

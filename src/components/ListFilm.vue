@@ -9,7 +9,9 @@
         <h5 class="card-title">
           <router-link :to="{ name: 'FilmMetric', params: { id: film.id }}">{{ film.title }}</router-link>
         </h5>
-        <p class="card-text">{{ film.description }}</p>
+        <p class="card-text">
+          {{ film.description.slice(0, 250) }}...
+        </p>
         <div class="read-more">
           <router-link :to="{ name: 'FilmMetric', params: { id: film.id }}">
             Show More
