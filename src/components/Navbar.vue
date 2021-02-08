@@ -26,7 +26,7 @@
               </ul>
             </li>
             <li class="get-started">
-              <a @click="handleSubmit">Log out {{ user.displayName }}</a>
+              <a class="btn" @click="handleSubmit">Log out {{ user.displayName }}</a>
             </li>
           </template>
           <template v-else>

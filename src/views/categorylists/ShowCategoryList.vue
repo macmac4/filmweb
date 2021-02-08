@@ -18,7 +18,7 @@
               <div class="card-body">
                 <h5 class="card-title"><a href="">{{ doc.title }}</a></h5>
                 <!-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p> -->
-                <div class="read-more"><a href="#"><i class="icofont-arrow-right"></i> Read More</a></div>
+                <div class="read-more"><a href="#"><i class="icofont-arrow-right"></i> Showe More</a></div>
               </div>
             </div>
           </div>

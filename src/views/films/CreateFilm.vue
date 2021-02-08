@@ -10,7 +10,7 @@
       <div class="row justify-content-center">
 
         <div class="col-lg-6 mt-4 mt-lg-0" v-if="statusSubmit == false">
-          <form @submit.prevent="handleSubmit">
+          <form @submit.prevent="handleSubmit" class="php-email-form w-100">
             <div class="form-group mt-3">
               <input
                 type="text"
@@ -75,8 +75,8 @@
           <div class="mb-3">
               <div class="alert alert-success mt-3" role="alert"> 
                 <p>Correctly created film</p> 
-                <router-link :to="{ name: 'FilmMetric', params: { id: filmID }}">
-                  <i class="icofont-arrow-right"></i> Read More
+                <router-link class="btn btn-success" :to="{ name: 'FilmMetric', params: { id: filmID }}">
+                  <i class="icofont-arrow-right"></i> Show Film
                 </router-link>
               </div>
           </div>
