@@ -6,19 +6,18 @@ const isPending = ref(false)
 
 const login = async (email, password) => {
   error.value = null
-  isPending = true
+  isPending.value = true
 
   try {
     const res = await projectAuth.signInWithEmailAndPassword(email, password)
     error.value = null
-    isPending = false
-    console.log(res)
+    isPending.value = false
 
     return res
 
   } catch (err) {
     error.value = err.message
-    isPending = false
+    isPending.value = false
   }
 
 } 

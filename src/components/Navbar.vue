@@ -1,19 +1,50 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
 
-    <div class="links">
-      <div v-if="user">
-        <button @click="handleSubmit" type="submit" class="btn btn-primary">Log out</button>
-        <div class="alert alert-danger mt-3" role="alert" v-if="error !== null"> {{ error }} </div>
+  <header id="header">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <div class="logo">
+        <h1 class="text-light"><router-link to="/">FilmWeb<span>.</span></router-link></h1>
       </div>
-      <div v-else>
-        <router-link v-if="!user" class="btn" :to="{ name: 'Signup' }">Signup</router-link>
-        <router-link v-if="!user" class="btn" :to="{ name: 'Login' }">Log in</router-link>
-      </div>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><router-link to="/">Home</router-link></li>
+          <li><router-link to="/film/list">List Films</router-link></li>
+          <!-- <li><router-link to="/category/list">Categories</router-link></li> -->
+          <li><router-link to="/contact">Contact Us</router-link></li>
+
+          <template v-if="user">
+            <li class="drop-down"><a href="">Main Panel</a>
+              <ul>
+                <li>
+                  <router-link to="/film/create">Create Film</router-link>
+                </li>
+                <li>
+                  <router-link to="/category/create">Create Category</router-link>
+                </li>
+              </ul>
+            </li>
+            <li class="get-started">
+              <a class="btn" @click="handleSubmit">Log out {{ user.displayName }}</a>
+            </li>
+          </template>
+          <template v-else>
+            <li class="get-started">
+              <router-link v-if="!user" class="btn" :to="{ name: 'Signup' }">Signup</router-link>
+            </li>
+            <li class="get-started">
+              <router-link v-if="!user" class="btn" :to="{ name: 'Login' }">Log in</router-link>
+            </li>
+          </template>
+        </ul>
+      </nav><!-- .nav-menu -->
+      <div class="alert alert-danger mt-3" role="alert" v-if="error !== null"> {{ error }} </div>
+
     </div>
-  </div>
+  </header><!-- End Header -->
+
+
 </template>
 
 <script>
@@ -30,7 +61,7 @@ export default {
     const handleSubmit = async () => {
       await logout()
       if (!error.value) {
-        router.push({ name: 'LoginForm'})
+        router.push({ name: 'Login'})
         console.log('logout')
       }
     }
