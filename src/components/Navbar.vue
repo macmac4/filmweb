@@ -15,7 +15,7 @@
           <li><router-link to="/contact">Contact Us</router-link></li>
 
           <template v-if="user">
-            <li class="drop-down"><a href="">Main Panel</a>
+            <li class="drop-down"><a class="panel-underline">Main Panel</a>
               <ul>
                 <li>
                   <router-link to="/film/create">Create Film</router-link>

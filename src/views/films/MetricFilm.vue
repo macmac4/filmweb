@@ -8,6 +8,8 @@
         <div class="d-flex justify-content-between align-items-center">
           <h2>User logged section</h2>
           <ol>
+            <li><router-link to="/film/create" class="btn btn-warning">Create film</router-link></li>
+            <li><router-link to="/category/create" class="btn btn-warning">Create category</router-link></li>
             <li><button type="submit" class="btn btn-danger" @click="handleDelete">Delete film</button></li>
           </ol>
         </div>
