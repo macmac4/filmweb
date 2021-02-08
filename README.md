@@ -18,7 +18,7 @@ You decide what category you assign the movie to. You can create any category.
 You can add data such as: title, description, cover and movie trailer link to the movie.
 
 ## Screenshots
-![Example screenshot](./public/images/screenshot.png)
+![Example screenshot](./src/assets/images/screenshot.png)
 
 ## Technologies
 * [VueJS](https://vuejs.org/) - HTML enhanced for web apps! (version 3)
