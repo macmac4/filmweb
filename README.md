@@ -45,7 +45,10 @@ $ npm run build
 ```
 
 ## Demo Example
-Link to show examples of usage: xxx - soon
+Link to show examples of usage: https://filmweb-6478d.web.app/
+* Demo user: 
+  * login: macmac4@wp.pl
+  * passowrd: maciej123
 
 
 ## Branche
