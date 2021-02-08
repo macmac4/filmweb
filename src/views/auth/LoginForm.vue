@@ -46,7 +46,7 @@
                 <div class="alert alert-success mt-3" role="alert"> 
                   <p>You are log in</p> 
                   <router-link class="btn btn-success" :to="{ name: 'FilmList' }">
-                    <i class="icofont-arrow-right"></i> Go to films collection
+                    Go to films collection
                   </router-link>
                 </div>
             </div>

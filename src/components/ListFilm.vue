@@ -12,7 +12,7 @@
         <p class="card-text">{{ film.description }}</p>
         <div class="read-more">
           <router-link :to="{ name: 'FilmMetric', params: { id: film.id }}">
-            <i class="icofont-arrow-right"></i> Show More
+            Show More
           </router-link>
         </div>
       </div>

@@ -76,7 +76,7 @@
               <div class="alert alert-success mt-3" role="alert"> 
                 <p>Correctly created film</p> 
                 <router-link class="btn btn-success" :to="{ name: 'FilmMetric', params: { id: filmID }}">
-                  <i class="icofont-arrow-right"></i> Show Film
+                  Show Film
                 </router-link>
               </div>
           </div>

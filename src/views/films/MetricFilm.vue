@@ -23,12 +23,12 @@
 
         <div class="portfolio-details-container">
           <div class="owl-carousel portfolio-details-carousel row">
-            <div class="col-8">
+            <div class="col-md-8 col-sm-12">
               <iframe width="100%" height="460" 
-                src="https://www.youtube.com/embed/s7EdQ4FqbhY">
+                :src="film.link">
               </iframe>
             </div>
-            <div class="col-4 text-right">
+            <div class="col-md-4 col-sm-12 text-right">
               <img :src="film.coverUrl" class="img-fluid" alt="">
             </div>
           </div>
