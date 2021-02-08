@@ -63,6 +63,7 @@ import getDocument from "@/composables/getDocument"
 import Breadcrumb from "@/components/Breadcrumb"
 import getUser from "@/composables/getUser"
 import useDocument from "@/composables/useDocument"
+import useStorage from "@/composables/useStorage"
 import { computed } from 'vue'
 
 export default {
@@ -75,12 +76,14 @@ export default {
     const { error, document: film } = getDocument('filmlist', props.id)
     const { user } = getUser()
     const { deleteDoc } = useDocument('filmlist', props.id)
+    const { deleteImage } = useStorage()
 
     const ownership = computed(() => {
       return film.value && user.value && user.value.uid == film.value.userId
     })
 
     const handleDelete = async () => {
+      await deleteImage(film.value.filePath)
       await deleteDoc()
       film.value = null
     }
