@@ -4,11 +4,11 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>Portfolio Details</h2>
+          <h2>Film Details</h2>
           <ol>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li>Portfolio Details</li>
+            <li><a href="/">Home</a></li>
+            <li><router-link :to="{ name: 'FilmList' }">List Film</router-link></li>
+            <li>Film Details</li>
           </ol>
         </div>
 

@@ -2,6 +2,18 @@
    <main id="main">
 
     <Breadcrumb />
+    <section class="breadcrumbs ownership" v-if="ownership">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>User logged section</h2>
+          <ol>
+            <li><button type="submit" class="btn btn-danger" @click="handleDelete">Delete film</button></li>
+          </ol>
+        </div>
+
+      </div>
+    </section>
 
     <!-- ======= Portfolio Details Section ======= -->
     <section class="portfolio-details">
@@ -10,7 +22,6 @@
       <div class="container" v-if="film">
 
         <div class="portfolio-details-container">
-
           <div class="owl-carousel portfolio-details-carousel row">
             <div class="col-8">
               <iframe width="100%" height="460" 
@@ -28,7 +39,7 @@
               <li><strong>Title</strong>: {{ film.title }}</li>
               <li><strong>Category</strong>: {{ film.category }}</li>
               <li><strong>Project date</strong>: {{ film.createdAt.toDate() }}</li>
-              <li><strong>Added by</strong>: {{ film.userName }}</li>
+              <li><strong>Created by</strong>: {{ film.userName }}</li>
             </ul>
           </div>
 
@@ -50,6 +61,9 @@
 <script>
 import getDocument from "@/composables/getDocument"
 import Breadcrumb from "@/components/Breadcrumb"
+import getUser from "@/composables/getUser"
+import useDocument from "@/composables/useDocument"
+import { computed } from 'vue'
 
 export default {
   name: "MetricFilm",
@@ -58,11 +72,24 @@ export default {
   },
   props: [ 'id' ],
   setup(props) {
-    const { error, document } = getDocument('filmlist', props.id)
+    const { error, document: film } = getDocument('filmlist', props.id)
+    const { user } = getUser()
+    const { deleteDoc } = useDocument('filmlist', props.id)
+
+    const ownership = computed(() => {
+      return film.value && user.value && user.value.uid == film.value.userId
+    })
+
+    const handleDelete = async () => {
+      await deleteDoc()
+      film.value = null
+    }
 
     return { 
       error, 
-      film: document 
+      film,
+      ownership,
+      handleDelete
     }
   }
 }
