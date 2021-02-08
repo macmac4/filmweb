@@ -18,7 +18,7 @@ You decide what category you assign the movie to. You can create any category.
 You can add data such as: title, description, cover and movie trailer link to the movie.
 
 ## Screenshots
-![Example screenshot](./src/assets/images/screenshot.png)
+![Example screenshot](./public/images/screenshot.png)
 
 ## Technologies
 * [VueJS](https://vuejs.org/) - HTML enhanced for web apps! (version 3)
@@ -41,7 +41,7 @@ $ npm run serve
 For production environments...
 ```sh
 $ the same as above but last commend run
-$ npm run prod
+$ npm run build
 ```
 
 ## Demo Example
